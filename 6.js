@@ -67,23 +67,37 @@ console.log(tmp);
 
 /* *Есть объект const fibonaciSequence = {from: 1, qty: 20}. Сделать объект итерируемым: при прохождении по нему циклом for of, должны показываться числа с шагом 3. Например: 1, 1, 2, 5, 8, 13.... в количестве 20 штук*/
 
-const fibonaciSequence = {
-    from: 1,
-    qty: 20
-}
+// const fibonaciSequence = {
+//     from: 1,
+//     qty: 20
+// }
 
-fibonaciSequence[Symbol.iterator] = function () {
-    {
-        const { from, qty } = this;
-        let i;
-        return {
-            next() {
-                return i < to ? { value: i, done: false } : { done: true };
-            }
-        }
+// fibonaciSequence[Symbol.iterator] = function () {
+//     {
+//         const { from, qty } = this;
+//         let i;
+//         return {
+//             next() {
+//                 return i < to ? { value: i, done: false } : { done: true };
+//             }
+//         }
+//     }
+// }
+
+// for (let prop of fibonaciSequence) {
+//     console.log(prop);
+// }
+
+
+let days = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
+
+function* makeIterator(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        yield arr[i];
     }
 }
 
-for (let prop of fibonaciSequence) {
-    console.log(prop);
-}
+const dayIterator = makeIterator(days);
+
+// for (let i = 0; i < 7; i++) { console.log(dayIterator.next()); }
+for (let i of dayIterator) { console.log(i); }
