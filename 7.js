@@ -62,6 +62,25 @@ console.log(mySet.size);
 console.log(mySet.delete(100));
 console.log(mySet);
 
-const obj1 = { prop: 'value' };
-obj1.prop = 'value2';
+const obj1 = { prop1: 'value' };
+
+Object.defineProperties(obj1, {
+    'prop2': {
+        configurable: true,
+        enumerable: true,
+        writable: false,
+        value: 5,
+    }
+})
+
+obj1.prop1 = 'value2';
+// obj1.prop2 = 7;
 console.log(obj1);
+
+const JSON_Obj = '{ "name": "John" }';
+const JSON_Str = '"name"';
+const JSON_Num = '5';
+
+console.log(JSON.parse(JSON_Obj));
+console.log(JSON.parse(JSON_Str));
+console.log(JSON.parse(JSON_Num));
